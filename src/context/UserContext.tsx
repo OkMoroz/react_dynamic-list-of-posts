@@ -4,9 +4,7 @@ import { User } from '../types/User';
 type SetUserContextType = React.Dispatch<React.SetStateAction<User | null>>;
 
 export const UserContext = createContext<User | null>(null);
-export const SetUserContext = createContext<SetUserContextType | undefined>(
-  undefined,
-);
+export const SetUserContext = createContext<SetUserContextType>(() => {});
 
 type Props = {
   children: React.ReactNode;

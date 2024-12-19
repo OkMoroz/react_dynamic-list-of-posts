@@ -20,20 +20,18 @@ export const AppWithContexts: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   useEffect(() => {
-    if (!selectedUser) {
-      return;
-    }
-
     setPosts([]);
     setError(false);
     setIsLoading(true);
 
-    setSelectedPost(null);
+    if (selectedUser) {
+      setSelectedPost(null);
 
-    getPosts(selectedUser.id)
-      .then(setPosts)
-      .catch(() => setError(true))
-      .finally(() => setIsLoading(false));
+      getPosts(selectedUser.id)
+        .then(setPosts)
+        .catch(() => setError(true))
+        .finally(() => setIsLoading(false));
+    }
   }, [selectedUser]);
 
   return (
